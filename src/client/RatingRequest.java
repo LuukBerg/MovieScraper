@@ -21,6 +21,6 @@ public class RatingRequest implements Serializable {
     }
     @Override
     public String toString() {
-        return "movie name=" + movieName;
+        return movieName;
     }
 }

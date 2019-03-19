@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class MessageSenderGateway {
-    private Connection connection;
     private Channel channel;
     private String channelName;
 

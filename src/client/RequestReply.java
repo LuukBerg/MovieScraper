@@ -39,7 +39,7 @@ public class RequestReply<REQUEST,REPLY> {
 
 	@Override
 	public String toString() {
-	   return request.toString() + "  --->  " + ((reply!=null)?reply.toString():"waiting for reply...");
+	   return request.toString() + "  --->  " + ((reply!=null)?reply.toString():"waiting for rating...");
 	}
 	
 }

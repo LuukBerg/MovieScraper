@@ -1,10 +1,9 @@
 package client;
 
 import Gateway.MessageSenderGateway;
+import Serializer.RequestSerializer;
 
-import javax.naming.NamingException;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class ClientJMSAppGateway {
     private MessageSenderGateway sender;
