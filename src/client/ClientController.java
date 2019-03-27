@@ -1,5 +1,7 @@
 package client;
 
+import Monitor.Monitor;
+import Serializer.MonitorGateway;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -20,14 +22,18 @@ public class ClientController {
     private ClientJMSAppGateway  clientJMSAppGateway;
 
     public ClientController() {
-        clientJMSAppGateway = new ClientJMSAppGateway();
+        clientJMSAppGateway = new ClientJMSAppGateway(this);
+        new MonitorGateway("Client");
 
     }
     @FXML
     public void SendRequest(){
         RatingRequest request = new RatingRequest(movies.getValue());
         addToListView(new RequestReply<RatingRequest, RatingReply>(request, null));
-        clientJMSAppGateway.RequestRating(request);
+                clientJMSAppGateway.RequestRating(request);
+
+        //((Runnable) () -> clientJMSAppGateway.RequestRating(request)).run();
+
     }
 
 
@@ -52,9 +58,13 @@ public class ClientController {
         ObservableList observableList= ratings.getItems();
         observableList.add(rr);
         ratings.setItems(observableList);
-
     }
     public void repaint(){
-        requestReplyList.repaint();
+        ratings.refresh();
+    }
+    public void add(RatingReply reply, RatingRequest request){
+        RequestReply rr = getRequestReply(request);
+        rr.setReply(reply);
+        repaint();
     }
 }

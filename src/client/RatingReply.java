@@ -1,8 +1,19 @@
 package client;
 
-public class RatingReply {
+import java.io.Serializable;
+
+public class RatingReply implements Serializable {
     private String movieName;
-    private long movieRating;
+    private Double movieRating;
+    private String providers;
+    public RatingReply() {
+    }
+
+    public RatingReply(String movieName, Double movieRating, String providers) {
+        this.movieName = movieName;
+        this.movieRating = movieRating;
+        this.providers = providers;
+    }
 
     public String getMovieName() {
         return movieName;
@@ -12,12 +23,24 @@ public class RatingReply {
         this.movieName = movieName;
     }
 
-    public long getMovieRating() {
+    public Double getMovieRating() {
         return movieRating;
     }
 
-    public void setMovieRating(long movieRating) {
+    public void setMovieRating(double movieRating) {
         this.movieRating = movieRating;
     }
 
+    public String getProviders() {
+        return providers;
+    }
+
+    public void setProviders(String providers) {
+        this.providers = providers;
+    }
+
+    @Override
+    public String toString() {
+        return "Rating: " + movieRating + " from: " + providers;
+    }
 }
