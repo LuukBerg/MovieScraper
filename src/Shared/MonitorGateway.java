@@ -1,8 +1,8 @@
-package Serializer;
+package Shared;
 
 import Gateway.MessageSenderGateway;
 import Monitor.LifeSign;
-import Serializer.Serializer;
+import Shared.Serializer;
 
 import java.io.IOException;
 

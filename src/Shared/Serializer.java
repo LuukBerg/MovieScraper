@@ -1,4 +1,4 @@
-package Serializer;
+package Shared;
 
 import Monitor.LifeSign;
 import client.RatingReply;
