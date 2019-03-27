@@ -1,5 +1,6 @@
 package Scrapers.IMBD;
 
+import Serializer.MonitorGateway;
 import client.ClientJMSAppGateway;
 import client.RatingReply;
 import client.RatingRequest;
@@ -23,7 +24,9 @@ public class IMBDController {
     private  IMBDAppGateway gateway;
 
     public IMBDController() {
+
         gateway = new IMBDAppGateway(this);
+        new MonitorGateway("IMBDScraper");
     }
 
     public void SendReply(){

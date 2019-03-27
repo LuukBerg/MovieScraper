@@ -14,6 +14,7 @@ public class SystemsMonitorGateWay {
     private HashMap<String, Date> systemList;
     private HashMap<String, List<Boolean>> strikes;
     private HashMap<String, Date> lastDate;
+    private List<String> systems;
     public SystemsMonitorGateWay() {
         serializer = new Serializer();
         receiver = new MessageReceiverGateway("MonitorReplyChannel");
@@ -22,9 +23,16 @@ public class SystemsMonitorGateWay {
         lastDate = new HashMap<>();
         Date date = new Date();
         date.setTime(0);
-        systemList.put("Client", date);
-        strikes.put("Client", new ArrayList<Boolean>());
-        lastDate.put("Client", null);
+        systems = new ArrayList<>();
+        systems.add("Client");
+        systems.add("JMS");
+        systems.add("IMBDScraper");
+        systems.add("RottenTomatoScraper");
+        for (String system: systems) {
+            systemList.put(system, date);
+            strikes.put(system, new ArrayList<Boolean>());
+            lastDate.put(system, null);
+        }
         receiver.setListener((consumerTag, delivery) -> {
             LifeSign lifeSign = serializer.stringToLifeSign(new String(delivery.getBody(), "UTF-8"));
             systemList.replace(lifeSign.getName(), lifeSign.getDate());
@@ -40,8 +48,8 @@ public class SystemsMonitorGateWay {
                 System.out.flush();
                 for (Map.Entry<String, Date> entry : systemList.entrySet()) {
 
-                    if(strikes.get(entry.getKey()).size() != 3){
-                        System.out.println("name: " + entry.getKey() + " date: " + entry.getValue());
+                    if(strikes.get(entry.getKey()).size() < 3){
+                        System.out.println("name: " + entry.getKey() + " last signal: " + entry.getValue());
                     }
                    else {
                         System.out.println("name: " + entry.getKey() + " DOWN");

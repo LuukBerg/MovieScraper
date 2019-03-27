@@ -1,5 +1,6 @@
 package JMS;
 
+import Serializer.MonitorGateway;
 import client.RatingReply;
 import client.RatingRequest;
 import client.RequestReply;
@@ -23,6 +24,7 @@ public class JMSController {
 
         clientGateway = new JMSClientAppGateWay(this);
         scraperGateway = new JMSScraperAppGateWay(this);
+        new MonitorGateway("JMS");
     }
 
 
