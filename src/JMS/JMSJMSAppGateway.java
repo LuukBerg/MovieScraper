@@ -2,7 +2,7 @@ package JMS;
 
 import Gateway.MessageReceiverGateway;
 import Gateway.MessageSenderGateway;
-import Serializer.Serializer;
+import Shared.Serializer;
 import client.RatingReply;
 import client.RatingRequest;
 import com.rabbitmq.client.AMQP;

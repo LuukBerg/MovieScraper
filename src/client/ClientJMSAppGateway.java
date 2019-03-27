@@ -2,7 +2,7 @@ package client;
 
 import Gateway.MessageReceiverGateway;
 import Gateway.MessageSenderGateway;
-import Serializer.Serializer;
+import Shared.Serializer;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.DeliverCallback;
 import javafx.application.Platform;
@@ -10,8 +10,6 @@ import javafx.scene.control.ListView;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
 public class ClientJMSAppGateway {
     private MessageSenderGateway sender;
@@ -31,8 +29,9 @@ public class ClientJMSAppGateway {
 
     public void initReceiver(){
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-            RatingReply reply = serializer.stringToReply(new String(delivery.getBody(), "UTF-8"));
-            RatingRequest request = map.get(delivery.getProperties().getCorrelationId());
+            final RatingReply reply = serializer.stringToReply(new String(delivery.getBody(), "UTF-8"));
+            System.out.println("got response: " + reply.getMovieRating());
+            final RatingRequest request = map.get(delivery.getProperties().getCorrelationId());
                 Platform.runLater(() -> controller.add(reply,request));
             };
         receiver.setListener(deliverCallback);

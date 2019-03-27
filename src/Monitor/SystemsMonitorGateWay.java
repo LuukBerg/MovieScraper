@@ -1,11 +1,8 @@
 package Monitor;
 
 import Gateway.MessageReceiverGateway;
-import Gateway.MessageSenderGateway;
-import Serializer.Serializer;
-import client.RatingRequest;
+import Shared.Serializer;
 
-import java.io.IOException;
 import java.util.*;
 
 public class SystemsMonitorGateWay {

@@ -4,12 +4,11 @@ import Gateway.MessageReceiverGateway;
 import Gateway.MessageSenderGateway;
 import Scrapers.IScraper;
 import Scrapers.MockScraper;
-import Serializer.Serializer;
+import Shared.Serializer;
 import client.RatingReply;
 import client.RatingRequest;
 import client.RequestReply;
 import com.rabbitmq.client.AMQP;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.HashMap;
 

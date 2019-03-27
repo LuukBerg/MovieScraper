@@ -2,18 +2,15 @@ package JMS;
 
 import Gateway.MessageReceiverGateway;
 import Gateway.MessageSenderGateway;
-import Serializer.Serializer;
+import Shared.Serializer;
 import client.RatingReply;
 import client.RatingRequest;
-import client.RequestReply;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.DeliverCallback;
 import javafx.application.Platform;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 public class JMSScraperAppGateWay {

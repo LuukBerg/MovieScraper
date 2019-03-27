@@ -1,7 +1,6 @@
 package Scrapers.IMBD;
 
-import Serializer.MonitorGateway;
-import client.ClientJMSAppGateway;
+import Shared.MonitorGateway;
 import client.RatingReply;
 import client.RatingRequest;
 import client.RequestReply;
@@ -56,5 +55,8 @@ public class IMBDController {
         ObservableList observableList= requests.getItems();
         observableList.add(rr);
         requests.setItems(observableList);
+    }
+    public void refresh(){
+        requests.refresh();
     }
 }

@@ -4,13 +4,12 @@ import Gateway.MessageReceiverGateway;
 import Gateway.MessageSenderGateway;
 import Scrapers.IScraper;
 import Scrapers.MockScraper;
-import Serializer.Serializer;
+import Shared.Serializer;
 import client.RatingReply;
 import client.RatingRequest;
 import client.RequestReply;
 import com.rabbitmq.client.AMQP;
 import javafx.application.Platform;
-import jdk.nashorn.internal.ir.RuntimeNode;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -53,7 +52,14 @@ public class IMBDAppGateway {
             e.printStackTrace();
         }
         RatingReply reply = new RatingReply(request.getMovieName(), rating, "IMBD");
-
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                RequestReply rr = controller.getRequestReply(request);
+                rr.setReply(reply);
+                controller.refresh();
+            }
+        });
         AMQP.BasicProperties replyProps = new AMQP.BasicProperties
                 .Builder()
                 .correlationId(map.get(request))

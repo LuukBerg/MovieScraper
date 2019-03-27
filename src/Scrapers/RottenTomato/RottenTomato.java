@@ -1,6 +1,6 @@
 package Scrapers.RottenTomato;
 
-import Serializer.MonitorGateway;
+import Shared.MonitorGateway;
 
 class RottenTomato {
 

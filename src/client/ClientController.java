@@ -1,7 +1,6 @@
 package client;
 
-import Monitor.Monitor;
-import Serializer.MonitorGateway;
+import Shared.MonitorGateway;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;

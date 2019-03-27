@@ -2,7 +2,7 @@ package JMS;
 
 import Gateway.MessageReceiverGateway;
 import Gateway.MessageSenderGateway;
-import Serializer.Serializer;
+import Shared.Serializer;
 import client.RatingReply;
 import client.RatingRequest;
 import client.RequestReply;
@@ -54,7 +54,9 @@ public class JMSClientAppGateWay {
                 .correlationId(clientMap.get(rr.getRequest()))
                 .build();
         try {
-            clientSender.SendMessage(serializer.replyToString((RatingReply)rr.getReply()), replyProps);
+            RatingReply reply = (RatingReply)rr.getReply();
+            System.out.println(reply.getMovieRating() + reply.getProviders());
+            clientSender.SendMessage(serializer.replyToString(reply), replyProps);
         } catch (IOException e) {
             e.printStackTrace();
         }

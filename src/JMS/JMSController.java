@@ -1,6 +1,6 @@
 package JMS;
 
-import Serializer.MonitorGateway;
+import Shared.MonitorGateway;
 import client.RatingReply;
 import client.RatingRequest;
 import client.RequestReply;
@@ -10,7 +10,6 @@ import javafx.scene.control.ListView;
 
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class JMSController {
 
