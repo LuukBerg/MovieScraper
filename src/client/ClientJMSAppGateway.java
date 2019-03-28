@@ -18,6 +18,7 @@ public class ClientJMSAppGateway {
     private ListView ratings;
     private HashMap<String, RatingRequest> map;
     private ClientController controller;
+
     public ClientJMSAppGateway(ClientController controller){
         this.controller = controller;
         sender = new MessageSenderGateway("RatingRequestChannel");
